@@ -1,0 +1,51 @@
+{% if current_user.is_authenticated %}
+    {% set menu =  {'Home': url_for('home'), 
+                    'JavaScript': url_for('page1'),
+                    'HTML': url_for('page2'),
+                    'Skills': url_for('page3'),
+                    'Form': url_for('form'),
+                    'Todo': url_for('todo'),
+                    'Feedback': url_for('reviews'),
+                    'Account': url_for('account'),
+                    'Log out': url_for('logout'),
+                    'Users': url_for('users')
+                    }
+    %}
+
+{% else %}
+
+    {% set menu =  {'Home': url_for('home'), 
+                    'JavaScript': url_for('page1'),
+                    'HTML': url_for('page2'),
+                    'Skills': url_for('page3'),
+                    'Form': url_for('form'),
+                    'Todo': url_for('todo'),
+                    'Feedback': url_for('reviews'),
+                    'Register': url_for('register'),
+                    'Login': url_for('login'),
+                    'Users': url_for('users')
+                    }
+    %}
+
+{% endif %}
+
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Anastasiia Klishch</a>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto">
+            {% for name, url in menu.items() %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url }}">
+                        <p>{{ name }}</p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+</nav>
+
+
+
+      

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Анастасія Кліщ - JavaScript{% endblock %}
+
+{% block content %}
+    <h1>JavaScript</h1>
+    <br>
+    <h3>Оцінка навичок:</h3>
+    <br>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <br>
+    <p>Маю досвід у володінні мовою програмування JavaScript на середньому рівні. Моя компетенція включає в себе здатність створювати веб-сторінки, виконувати обробку подій та запити до серверів.</p>
+    <p>Зараз вдосконалюю свої навички та працюю над поповненням свого портфоліо.</p>
+
+    
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Найпростіший сайт
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>Це моя одна з найперших робіт, написаних з допомогою JavaScript.</strong>
+                    <p>Розуміє під собою простий сайт. (Пробачте, насправді у мене немає якихось робіт на портфоліо)</p>
+                    <p>Code:</p>
+                    <img src="{{ url_for('static', filename='images/image1.png') }}" class="img-fluid" alt="Responsive image">
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Сайт
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>Теж дуже проста сторінка з простим кодом.</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <p>Ось мій github, якщо ви хочете побачити справжній вигляд моїх робіт:</p>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="https://github.com/klshch/lab1">lab1</a></li>
+        <li class="breadcrumb-item"><a href="https://github.com/klshch/lab2">lab2</a></li>
+    </ol>
+      
+{% endblock %}

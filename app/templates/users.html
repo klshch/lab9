@@ -1,0 +1,25 @@
+{% from 'render_field.html' import render_field %}
+{% extends "base.html" %}
+
+{% block title %} Users {% endblock %}
+
+{% block content %}
+
+<h1>Users page</h1>
+<br>
+<div class="d-flex justify-content-center align-items-center">
+    <div class="mt-4">
+        {% if all_users %}
+        <ul>
+            {% for user in all_users %}
+                <li>{{ user.username }} ({{ user.email }})</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <p class="text-danger">There are no registered users.<p>
+        {% endif %}
+    </div>
+</div>
+<p class="text-info">Number of users: {{total_users}}</p>
+
+{% endblock %}

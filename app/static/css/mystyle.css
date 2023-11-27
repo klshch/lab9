@@ -1,0 +1,15 @@
+body {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+input{
+    text-align: center;
+}
+
+.button-container {
+    text-align: center;
+}
+

@@ -1,0 +1,41 @@
+{% from 'render_field.html' import render_field %}
+{% extends "base.html" %}
+
+{% block title %} Account {% endblock %}
+
+{% block content %}
+
+
+<h1>Account page</h1>
+
+<div class="row justify-content-center align-items-center">
+    <div class="mt-4">
+        <div class="text-center">
+            <img src="{{ url_for('static', filename='images/' + current_user.image_file) }}" alt="User Image" style="border-radius: 50%; border: 2px solid #000; width: 10%; height: 10%;">
+            <h3 class="title">{{current_user.username}}</h3>
+            <h3>{{ current_user.email }}</h3>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-center align-items-center">
+    <div class="mt-4 col-sm-3">
+        <form action={{url_for("account")}}  method="POST" novalidate enctype="multipart/form-data">
+            {{ form.csrf_token }}
+            {{ render_field(form.username)}}
+            {{ render_field(form.email)}}
+            {{ render_field(form.image_file) }}
+            {{ render_field(form.about_me)}}
+            {{ form.last_seen }}
+            <br>
+            <div class="button-container d-grid gap-2"> 
+                {{form.submit()}}
+            </div>
+        </form>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+{% endblock %}

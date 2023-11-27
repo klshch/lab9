@@ -1,0 +1,33 @@
+{% from 'render_field.html' import render_field %}
+{% extends "base.html" %}
+
+{% block title %} Форма {% endblock %}
+
+{% block content %}
+
+<h1>Reviews page</h1>
+<br>
+<div class="d-flex justify-content-center align-items-center">
+    <div class="mt-4">
+        <form action={{url_for("reviews")}}  method="POST" novalidate>
+            {{ reviews.csrf_token }}
+            {{ render_field(reviews.name)}}
+            {{ render_field(reviews.content)}}
+            <br>  
+            <div class="button-container">        
+                {{reviews.submit_feedback()}}
+            </div> 
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<h2>Rewiews:</h2>
+<br>
+<ul>
+    {% for entry in feedback_entries %}
+        <li>{{ entry.name }}: {{ entry.content }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

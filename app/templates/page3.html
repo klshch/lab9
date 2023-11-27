@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} Skills {% endblock %}
+
+{% block content %}
+<h1>Skills page</h1>
+<br>
+
+{% if skill %}
+    <h2>{{ skill["name"] }}</h2>
+{% else %}
+    <h2>All Skills</h2>
+    <p>Total Skills: {{ total_skills }}</p>
+{% endif %}
+
+{% if skill %}
+    <ul>
+        <li>{{ skill["number"] }} : {{ skill["name"] }}</li>
+    </ul>
+{% else %}
+    <ul>
+        {% for skill in skills %}
+            <li>{{ skill["number"] }} : {{ skill["name"] }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}

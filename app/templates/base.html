@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>base</title>
+    <title>{% block title %}base{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mystyle.css') }}">
+    <script src="{{ url_for('static', filename='css/bootstrap.js') }}"></script>
+
+</head>
+<body>
+    {% include "nav.html" %}
+
+    <div class="container">
+      <br>
+      <br>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <ul class="list-group">
+            {% for category, message in messages %}
+              <li class="list-group-item list-group-item-{{category}}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      <br>
+      <br>
+    </div>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+  
+</body>
+</html>

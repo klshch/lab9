@@ -1,0 +1,89 @@
+{% from 'render_field.html' import render_field %}
+{% extends "base.html" %}
+
+{% block title %} Info page {% endblock %}
+
+{% block content %}
+<h1>Info page</h1>
+<br>
+<br>
+<p>Hello, {{ session["username"] }}!</p>
+<br>
+<div class="container">
+    <p class="text-danger">If you want to log out and delete data from the session, click the button:</p>
+    <form action="{{ url_for('clear_session') }}" method="GET">
+        <button type="submit" class="btn btn-danger">Log out</button>
+    </form>
+    <br>
+    <br>
+    <h2>Add cookie:</h2>
+    <br>
+    <form action="{{ url_for('add_cookie') }}" method="POST">
+        <div class="form-group">
+            <label for="cookie_key">Key:</label>
+            <input type="text" class="form-control" id="cookie_key" name="cookie_key" required>
+        </div>
+        <div class="form-group">
+            <label for="cookie_value">Value:</label>
+            <input type="text" class="form-control" id="cookie_value" name="cookie_value" required>
+        </div>
+        <div class="form-group">
+            <label for="cookie_expiry">Validity (hours):</label>
+            <input type="number" class="form-control" id="cookie_expiry" name="cookie_expiry" required>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    <br>
+    <br>
+    <h2>Delete cookies:</h2>
+    <br>
+    <form action="{{ url_for('delete_cookie') }}" method="POST">
+        <div class="form-group">
+            <label for="cookie_key_to_delete">Delete key:</label>
+            <input type="text" class="form-control" id="cookie_key_to_delete" name="cookie_key_to_delete" required>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-danger">Delete cookies by key</button>
+    </form>
+    <br>
+    <form action="{{ url_for('delete_all_cookies') }}" method="POST">
+        <button type="submit" class="btn btn-danger">Delete all cookies</button>
+    </form>
+    <br>
+    <br>
+    <h2>Change Password:</h2>
+    <br>
+    <form action="{{ url_for('change_password') }}" method="POST" novalidate>
+        {{ form.csrf_token }}
+        {{ render_field(form.current_password)}}
+        {{ render_field(form.new_password)}}
+        <br>
+        {{form.submit_password()}}
+    </form>
+    <br>
+    <br>
+    <h2>Збережені кукі:</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Ключ</th>
+                <th scope="col">Значення</th>
+                <th scope="col">Термін дії</th>
+                <th scope="col">Час створення</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value, expiry, created in cookies %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                    <td>{{ expiry }} hours</td>
+                    <td>{{ created }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
